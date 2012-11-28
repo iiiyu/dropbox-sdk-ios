@@ -299,10 +299,16 @@ id<DBNetworkRequestDelegate> dbNetworkRequestDelegate = nil;
 		errorStr = [error description];
 	}
 
-	if (!([error.domain isEqual:DBErrorDomain] && error.code == 304)) {
-		// Log errors unless they're 304's
-		DBLogWarning(@"DropboxSDK: error making request to %@ - (%d) %@", [[request URL] path], error.code, errorStr);
+    // Log errors unless they're 304's
+	if ([error.domain isEqual:DBErrorDomain] && error.code == 304) {
+        return;
 	}
+    
+    if (error.code == 404) {
+        DBLogWarning(@"DropboxSDK file not found: %@", [[[request URL] path] lastPathComponent]);
+    } else {
+        DBLogWarning(@"DropboxSDK: error making request to %@ - (%d) %@", [[[request URL] path] lastPathComponent], error.code, errorStr);
+    }
 }
 
 @end
