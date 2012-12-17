@@ -663,7 +663,7 @@ params:(NSDictionary *)params
 	NSString *sig = [self signatureForParams:paramList url:[NSURL URLWithString:urlStr]];
 	NSMutableURLRequest *urlRequest = [self requestForParams:paramList urlString:urlStr signature:sig];
 
-	NSString *contentLength = [NSString stringWithFormat:@"%qu", [data length]];
+	NSString *contentLength = [NSString stringWithFormat:@"%u", [data length]];
 	[urlRequest addValue:contentLength forHTTPHeaderField:@"Content-Length"];
 	[urlRequest addValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
 	[urlRequest setHTTPBody:data];
