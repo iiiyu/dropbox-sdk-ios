@@ -117,7 +117,7 @@ id<DBNetworkRequestDelegate> dbNetworkRequestDelegate = nil;
 - (id)parseResponseAsType:(Class)cls {
     if (error) return nil;
     NSObject *res = [self resultJSON];
-    if (![res isKindOfClass:cls]) {
+    if (res == nil || ![res isKindOfClass:cls]) {
         [self setError:[NSError errorWithDomain:DBErrorDomain code:DBErrorInvalidResponse userInfo:userInfo]];
         return nil;
     }
