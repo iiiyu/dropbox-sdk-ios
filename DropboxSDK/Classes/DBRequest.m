@@ -303,7 +303,7 @@ id<DBNetworkRequestDelegate> dbNetworkRequestDelegate = nil;
 	if (!([error.domain isEqual:DBErrorDomain] && error.code == 304)) {
 		// Log errors unless they're 304's
 		DBLogWarning(@"DropboxSDK: error making request to %@ - (%ld) %@",
-                       [[request URL] path], (long)error.code, errorStr);
+                       [[[request URL] path] lastPathComponent], (long)error.code, errorStr);
 	}
 }
 
