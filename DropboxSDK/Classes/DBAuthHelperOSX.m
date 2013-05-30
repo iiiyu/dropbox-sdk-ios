@@ -72,7 +72,9 @@ NSString *DBAuthHelperOSXStateChangedNotification = @"DBAuthHelperOSXStateChange
     loading = NO;
 	[self postStateChangedNotification:nil];
 
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:NSApplicationDidBecomeActiveNotification object:nil];
+//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:NSApplicationDidBecomeActiveNotification object:nil];
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+
 
     NSURL *url = [self.restClient authorizeURL];
     [[NSWorkspace sharedWorkspace] openURL:url];
@@ -120,7 +122,9 @@ NSString *DBAuthHelperOSXStateChangedNotification = @"DBAuthHelperOSXStateChange
 	return restClient;
 }
 
-- (void)applicationDidBecomeActive:(NSNotification*)notification {
+//- (void)applicationDidBecomeActive:(NSNotification*)notification {
+- (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent
+{
 	if ([self.restClient requestTokenLoaded] && !loading) {
 		[self postStateChangedNotification:nil];
 
