@@ -100,6 +100,7 @@ static NSString *kDBLinkNonce = @"dropbox.sync.nonce";
                   consumerKey, secret, nonce, userIdStr];
         UIViewController *connectController = [[[DBConnectController alloc] initWithUrl:[NSURL URLWithString:urlStr] fromController:rootController session:self] autorelease];
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:connectController] autorelease];
+        navController.navigationBar.translucent = NO;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             connectController.modalPresentationStyle = UIModalPresentationFormSheet;
             navController.modalPresentationStyle = UIModalPresentationFormSheet;
