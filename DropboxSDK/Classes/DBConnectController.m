@@ -307,7 +307,7 @@ extern id<DBNetworkRequestDelegate> dbNetworkRequestDelegate;
     if ([webView isLoading]) {
         [webView stopLoading];
     }
-    [self.navigationController dismissModalViewControllerAnimated:animated];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)dismiss {

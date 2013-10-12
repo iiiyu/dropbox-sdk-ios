@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Dropbox. All rights reserved.
 //
 
-#import "DBMetadata.h"
+@class DBMetadata;
 
 @interface DBDeltaEntry : NSObject <NSCoding> {
     NSString *lowercasePath;
